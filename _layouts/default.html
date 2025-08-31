@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body data-rsssl=1 class="home blog wp-theme-superfast gmr-theme idtheme kentooz gmr-sticky gmr-box-layout hfeed" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+<div class="site inner-wrap" id="site-container"> <a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+
+    {%- include header.html -%}
+
+<div id="content" class="gmr-content">
+<div class="container">
+<div class='row'>
+
+        {{ content }}
+ 
+{%- include sidebar.html -%}
+
+</div></div><div id="stop-container" style='height:30px;width:100%;'></div>
+</div></div>
+
+    {%- include footer.html -%}
+
+  </body>
+
+</html>
