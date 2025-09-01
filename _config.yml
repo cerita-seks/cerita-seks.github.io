@@ -12,7 +12,7 @@ twitter_username: ""
 github_username: "cerdew"
 
 # Pagination
-paginate: 10
+paginate: 1
 paginate_path: "/page/:num/"
 
 # Build
