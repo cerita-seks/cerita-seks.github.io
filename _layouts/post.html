@@ -1,0 +1,97 @@
+---
+layout: default
+---
+<div class="col-md-12">
+  <div class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span class="first-cl" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemscope itemtype="https://schema.org/WebPage" itemprop="item" itemid="{{ site.baseurl }}/" href="{{ site.baseurl }}/"><span itemprop="name">Homepage</span></a>
+      <span itemprop="position" content="1"></span>
+    </span>
+    <span class="separator">/</span>
+    {% if page.categories.size > 0 %}
+      <span class="0-cl" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemscope itemtype="https://schema.org/WebPage" itemprop="item" itemid="{{ site.baseurl }}/category/{{ page.categories.first | slugify }}/" href="{{ site.baseurl }}/category/{{ page.categories.first | slugify }}/"><span itemprop="name">{{ page.categories.first }}</span></a>
+        <span itemprop="position" content="2"></span>
+      </span>
+      <span class="separator">/</span>
+    {% endif %}
+    <span class="last-cl" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">{{ page.title }}</span>
+      <span itemprop="position" content="{% if page.categories.size > 0 %}3{% else %}2{% endif %}"></span>
+    </span>
+  </div>
+</div>
+
+<div id="primary" class="content-area col-md-8">
+  <main id="main" class="site-main" role="main">
+    <article id="post-{{ page.title | slugify }}" class="post-{{ page.title | slugify }} post type-post status-publish format-standard has-post-thumbnail hentry category-technology tag-iphone" itemscope="itemscope" itemtype="https://schema.org/CreativeWork">
+      <div class="gmr-box-content gmr-single">
+        {% if page.featured_image %}
+          <figure class="wp-caption alignnone">
+            <img width="900" height="600" src="{{ page.featured_image | relative_url }}" class="attachment-full size-full wp-post-image" alt="{{ page.title }}" decoding="async" fetchpriority="high" title="{{ page.title }}" />
+            {% if page.image_caption %}
+              <figcaption class="wp-caption-text">{{ page.image_caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% endif %}
+
+        <header class="entry-header">
+          <h1 class="entry-title" itemprop="headline">{{ page.title }}</h1>
+          <span class="byline"> By <span class="entry-author vcard" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+            <a class="url fn n" href="#" title="Permalink to: {{ page.author }}" itemprop="url"><span itemprop="name">{{ page.author | default: 'admin' }}</span></a>
+          </span></span>
+          <span class="posted-on">Posted on <time class="entry-date published updated" itemprop="dateModified" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %e, %Y" }}</time></span>
+        </header>
+
+        <div class="entry-content entry-content-single" itemprop="text">
+          {{ content }}
+        </div>
+
+        <div class="idblog-social-share">
+          <h3>Share this:</h3>
+          <ul class="idblog-socialicon-share">
+            <li class="facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" class="gmr-share-facebook" rel="nofollow" title="Share this">...</a>
+            </li>
+            <li class="twitter">
+              <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title | uri_escape }}" class="gmr-share-twitter" rel="nofollow" title="Tweet this">...</a>
+            </li>
+            <li class="whatsapp">
+              <a href="https://api.whatsapp.com/send?text={{ page.title | uri_escape }} {{ site.url }}{{ page.url }}" class="gmr-share-whatsapp" rel="nofollow" title="Whatsapp">...</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <footer class="entry-footer">
+        {% if page.categories.size > 0 %}
+          <span class="cat-links">Posted in
+            {% for category in page.categories %}
+              <a href="{{ site.baseurl }}/category/{{ category | slugify }}" rel="category tag">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        {% endif %}
+
+        {% if page.tags.size > 0 %}
+          <span class="tags-links">Tagged
+            {% for tag in page.tags %}
+              <a href="{{ site.baseurl }}/tag/{{ tag | slugify }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        {% endif %}
+
+        <nav class="navigation post-navigation" aria-label="Posts">
+          <h2 class="screen-reader-text">Post navigation</h2>
+          <div class="nav-links">
+            {% if page.previous %}
+              <div class="nav-previous"><a href="{{ page.previous.url | relative_url }}" rel="prev"><span>Previous post</span> {{ page.previous.title }}</a></div>
+            {% endif %}
+            {% if page.next %}
+              <div class="nav-next"><a href="{{ page.next.url | relative_url }}" rel="next"><span>Next post</span> {{ page.next.title }}</a></div>
+            {% endif %}
+          </div>
+        </nav>
+      </footer>
+    </article>
+  </main>
+</div>
