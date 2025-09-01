@@ -1,0 +1,29 @@
+---
+layout: default
+title: Baca Cerita Seks Terbaru Tanpa Coin
+description: Baca Cerita Seks Terbaru Gratis Tanpa Coin Alias Gratis Disini Aja. 
+---
+<div id="primary" class="content-area col-md-8 gmr-default"><main id="main" class="site-main" role="main">
+<header><h1 class="page-title screen-reader-text">Cerita Seks Terbaru</h1></header>
+
+    {% for post in paginator.posts %}
+      <article class="gmr-smallthumb clearfix post type-post status-publish format-standard has-post-thumbnail hentry" itemscope="itemscope" itemtype="https://schema.org/CreativeWork">
+<div class="gmr-box-content">
+
+<div class="content-thumbnail">
+        {% if post.image %}
+<a href="https://cerita-seks.github.io{{ post.url }}" itemprop="url" title="Permalink to: {{ post.title }}" rel="bookmark"><img width="200" height="135" src="{{ post.image }}" class="attachment-medium size-medium wp-post-image" alt="{{ post.title }}" itemprop="image" decoding="async" title="{{ post.title }}" /></a></div>
+        {% endif %}
+<div class="item-article">
+<header class="entry-header"><h2 class="entry-title" itemprop="headline"> <a href="https://cerita-seks.github.io{{ post.url }}" itemprop="url" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a></h2>
+<div class="entry-meta">
+<div class="gmr-metacontent">
+<span class="byline"> By <span class="entry-author vcard" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/person"><span itemprop="name">admin</span></span></span><span class="posted-on">Posted on <time class="entry-date published updated" itemprop="dateModified" datetime="{{ post.date | date: "%d %B %Y" }}">{{ post.date | date: "%d %B %Y" }}</time></span></div></div></header>
+
+<div class="entry-content" itemprop="text"><p>{{ post.excerpt | truncatewords: 20 }}</p>
+
+</div></div></div></article>
+{% endfor %}
+
+  {% include pagination.html %}
+</main></div>
